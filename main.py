@@ -87,8 +87,8 @@ if GOOGLE_API_KEY:
         llm = ChatGoogleGenerativeAI(
             model="gemini-2.5-flash",
             google_api_key=GOOGLE_API_KEY,
-            temperature=0.7,
-            convert_system_message_to_human=True  # Enable this for better tool calling
+            temperature=0.5,
+            convert_system_message_to_human=True
         )
 
         # Initialize tools
@@ -166,7 +166,7 @@ After using the appropriate tools for each activity, create a comprehensive budg
             agent=agent, 
             tools=tools, 
             verbose=True,  # Enable verbose mode to see tool calls
-            max_iterations=20,  # Increased iterations to allow for more tool calls
+            max_iterations=20,
             return_intermediate_steps=False,
             handle_parsing_errors=True,
             early_stopping_method="generate"  # Ensures complete response generation
