@@ -195,7 +195,7 @@ with col1:
     
     cs = st.selectbox(
         "💵 Select your currency:",
-        options=["USD", "EUR", "GBP", "INR", "AUD", "CAD", "JPY", "CNY", "RUB", "BRL", "THB"],
+        options=("USD", "EUR", "GBP", "INR", "AUD", "CAD", "JPY", "CNY", "RUB", "BRL", "THB"),
         index=0,
         help="Choose the currency in which your budget is denominated."
     )
@@ -268,8 +268,8 @@ if st.button("✨ Generate AI Budget Plan", type="primary", use_container_width=
 
                         Format it as a proper budget plan, not just a list of places."""
                     
-                    follow_up_response = budget_agent_executor.invoke({"input": follow_up_prompt})
-                    output = follow_up_response.get("output", str(follow_up_response))
+                    fup = budget_agent_executor.invoke({"input": follow_up_prompt})
+                    output = fup.get("output", str(fup))
 
                 st.subheader("📊 Your AI-Generated Budget Plan")
                 st.markdown(output)
