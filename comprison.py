@@ -58,7 +58,7 @@ def compare_data_structures():
     
     
     
-    search_elem = sample_data[data_size // 2]
+    search_elem = sample_data[data_size // 2] # Get middle Element
     start = time.time()
     _ = search_elem in lst
     list_search_time = time.time() - start
