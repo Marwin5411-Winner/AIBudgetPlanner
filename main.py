@@ -11,6 +11,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from Tools.google_map_search import GoogleMapSearchTool
 from Tools.flight_search import FlightSearchTool
 
+cur_symbols = ("USD", "EUR", "GBP", "INR", "AUD", "CAD", "JPY", "CNY", "RUB", "BRL", "THB")
 
 
 # print(map_tool.name)
@@ -23,7 +24,6 @@ st.caption("Plan your activities like eating out, movies, and travel within your
 
 # --- API Key Management ---
 try:
-    # Ensure st.secrets is available and the key exists
     if hasattr(st, 'secrets') and "GOOGLE_API_KEY" in st.secrets:
         GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
     else:
@@ -195,7 +195,7 @@ with col1:
     
     cs = st.selectbox(
         "💵 Select your currency:",
-        options=("USD", "EUR", "GBP", "INR", "AUD", "CAD", "JPY", "CNY", "RUB", "BRL", "THB"),
+        options=cur_symbols,
         index=0,
         help="Choose the currency in which your budget is denominated."
     )
@@ -207,11 +207,11 @@ with col1:
     )
 
 with col2:
-    example_activities = "Round-trip flight from LAX to JFK on 2025-08-15 returning 2025-08-20, 3 restaurant meals in New York, visit Central Park attractions, 2 Broadway show tickets"
+    e_a = "Round-trip flight from LAX to JFK on 2025-08-15 returning 2025-08-20, 3 restaurant meals in New York, visit Central Park attractions, 2 Broadway show tickets"
     act_i = st.text_area(
         "📝 List desired activities:",
         height=120,
-        placeholder=f"e.g., {example_activities}",
+        placeholder=f"e.g., {e_a}",
         help="List all activities you want to budget for. For flights, include departure/destination airports and dates. Be as specific as possible."
     )
 
